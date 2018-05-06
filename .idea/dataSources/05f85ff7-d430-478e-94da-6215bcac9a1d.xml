@@ -1,0 +1,225 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dataSource name="ssmp@localhost">
+  <database-model serializer="dbm" rdbms="MYSQL" format-version="4.2">
+    <root id="1"/>
+    <schema id="2" parent="1" name="ssmp">
+      <Current>1</Current>
+      <Visible>1</Visible>
+    </schema>
+    <schema id="3" parent="1" name="information_schema"/>
+    <schema id="4" parent="1" name="mysql"/>
+    <schema id="5" parent="1" name="performance_schema"/>
+    <schema id="6" parent="1" name="sys"/>
+    <table id="7" parent="2" name="aArticle"/>
+    <table id="8" parent="2" name="articleAndComment"/>
+    <table id="9" parent="2" name="articleComment"/>
+    <table id="10" parent="2" name="articleImg"/>
+    <table id="11" parent="2" name="cArticle"/>
+    <table id="12" parent="2" name="gArticle"/>
+    <table id="13" parent="2" name="thumbsDown"/>
+    <table id="14" parent="2" name="thumbsUp"/>
+    <table id="15" parent="2" name="thumbsUpOrDown"/>
+    <table id="16" parent="2" name="userArticle"/>
+    <table id="17" parent="2" name="userComment"/>
+    <table id="18" parent="2" name="user_table"/>
+    <column id="19" parent="7" name="aritcleId">
+      <Position>1</Position>
+      <DataType>int(11)|0</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>1</SequenceIdentity>
+    </column>
+    <column id="20" parent="7" name="article">
+      <Position>2</Position>
+      <DataType>varchar(300)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="21" parent="7" name="articlePublishTime">
+      <Position>3</Position>
+      <DataType>timestamp|0</DataType>
+      <NotNull>1</NotNull>
+      <DefaultExpression>CURRENT_TIMESTAMP</DefaultExpression>
+    </column>
+    <key id="22" parent="7" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>aritcleId</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <column id="23" parent="8" name="articleId">
+      <Position>1</Position>
+      <DataType>int(11)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="24" parent="8" name="commentId">
+      <Position>2</Position>
+      <DataType>int(11)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="25" parent="9" name="commentId">
+      <Position>1</Position>
+      <DataType>int(11)|0</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>1</SequenceIdentity>
+    </column>
+    <column id="26" parent="9" name="articleComment">
+      <Position>2</Position>
+      <DataType>varchar(200)|0</DataType>
+    </column>
+    <column id="27" parent="9" name="commentTime">
+      <Position>3</Position>
+      <DataType>timestamp|0</DataType>
+      <NotNull>1</NotNull>
+      <DefaultExpression>CURRENT_TIMESTAMP</DefaultExpression>
+    </column>
+    <key id="28" parent="9" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>commentId</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <column id="29" parent="10" name="articleId">
+      <Position>1</Position>
+      <DataType>int(11)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="30" parent="10" name="articleImgAddress">
+      <Position>2</Position>
+      <DataType>varchar(40)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="31" parent="11" name="aritcleId">
+      <Position>1</Position>
+      <DataType>int(11)|0</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>1</SequenceIdentity>
+    </column>
+    <column id="32" parent="11" name="article">
+      <Position>2</Position>
+      <DataType>varchar(300)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="33" parent="11" name="articlePublishTime">
+      <Position>3</Position>
+      <DataType>timestamp|0</DataType>
+      <NotNull>1</NotNull>
+      <DefaultExpression>CURRENT_TIMESTAMP</DefaultExpression>
+    </column>
+    <key id="34" parent="11" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>aritcleId</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <column id="35" parent="12" name="aritcleId">
+      <Position>1</Position>
+      <DataType>int(11)|0</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>1</SequenceIdentity>
+    </column>
+    <column id="36" parent="12" name="article">
+      <Position>2</Position>
+      <DataType>varchar(300)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="37" parent="12" name="articlePublishTime">
+      <Position>3</Position>
+      <DataType>timestamp|0</DataType>
+      <NotNull>1</NotNull>
+      <DefaultExpression>CURRENT_TIMESTAMP</DefaultExpression>
+    </column>
+    <key id="38" parent="12" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>aritcleId</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <column id="39" parent="13" name="articleId">
+      <Position>1</Position>
+      <DataType>int(11)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="40" parent="13" name="userId">
+      <Position>2</Position>
+      <DataType>int(11)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="41" parent="14" name="articleId">
+      <Position>1</Position>
+      <DataType>int(11)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="42" parent="14" name="userId">
+      <Position>2</Position>
+      <DataType>int(11)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="43" parent="15" name="articleId">
+      <Position>1</Position>
+      <DataType>int(11)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="44" parent="15" name="thumbsUpNum">
+      <Position>2</Position>
+      <DataType>int(11)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="45" parent="15" name="thumbsDownNum">
+      <Position>3</Position>
+      <DataType>int(11)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <key id="46" parent="15" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>articleId</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <column id="47" parent="16" name="articleId">
+      <Position>1</Position>
+      <DataType>int(11)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="48" parent="16" name="userId">
+      <Position>2</Position>
+      <DataType>int(11)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="49" parent="17" name="commentId">
+      <Position>1</Position>
+      <DataType>int(11)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="50" parent="17" name="userId">
+      <Position>2</Position>
+      <DataType>int(11)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="51" parent="18" name="userId">
+      <Position>1</Position>
+      <DataType>int(11)|0</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>1</SequenceIdentity>
+    </column>
+    <column id="52" parent="18" name="account">
+      <Position>2</Position>
+      <DataType>char(11)|0</DataType>
+    </column>
+    <column id="53" parent="18" name="password">
+      <Position>3</Position>
+      <DataType>varchar(16)|0</DataType>
+    </column>
+    <column id="54" parent="18" name="accountSex">
+      <Position>4</Position>
+      <DataType>enum(&apos;男&apos;, &apos;女&apos;)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="55" parent="18" name="accountSign">
+      <Position>5</Position>
+      <DataType>varchar(100)|0</DataType>
+    </column>
+    <column id="56" parent="18" name="accountImg">
+      <Position>6</Position>
+      <DataType>varchar(40)|0</DataType>
+    </column>
+    <key id="57" parent="18" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>userId</ColNames>
+      <Primary>1</Primary>
+    </key>
+  </database-model>
+</dataSource>

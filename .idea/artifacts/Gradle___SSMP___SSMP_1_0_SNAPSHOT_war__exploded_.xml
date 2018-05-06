@@ -1,0 +1,52 @@
+<component name="ArtifactManager">
+  <artifact type="exploded-war" name="Gradle : SSMP : SSMP-1.0-SNAPSHOT.war (exploded)">
+    <output-path>$PROJECT_DIR$/build/libs/exploded/SSMP-1.0-SNAPSHOT.war</output-path>
+    <properties id="gradle-properties">
+      <options external-project-path="$PROJECT_DIR$">
+        <manifest>TWFuaWZlc3QtVmVyc2lvbjogMS4wDQoNCg==</manifest>
+      </options>
+    </properties>
+    <root id="root">
+      <element id="directory" name="META-INF">
+        <element id="file-copy" path="$PROJECT_DIR$/build/libs/exploded/SSMP-1.0-SNAPSHOT.war/META-INF/MANIFEST.MF" />
+      </element>
+      <element id="javaee-facet-resources" facet="SSMP_main/web/Web Gradle : SSMP-1.0-SNAPSHOT.war" />
+      <element id="directory" name="WEB-INF">
+        <element id="directory" name="classes">
+          <element id="module-output" name="SSMP_main" />
+          <element id="dir-copy" path="$PROJECT_DIR$/build/resources/main" />
+        </element>
+        <element id="directory" name="lib">
+          <element id="library" level="project" name="Gradle: org.codehaus.groovy:groovy-all:2.3.11" />
+          <element id="library" level="project" name="Gradle: jstl:jstl:1.2" />
+          <element id="library" level="project" name="Gradle: org.springframework:spring-aop:4.2.4.RELEASE" />
+          <element id="library" level="project" name="Gradle: org.springframework:spring-context:4.2.4.RELEASE" />
+          <element id="library" level="project" name="Gradle: org.springframework:spring-beans:4.2.4.RELEASE" />
+          <element id="library" level="project" name="Gradle: org.springframework:spring-web:4.2.4.RELEASE" />
+          <element id="library" level="project" name="Gradle: org.springframework:spring-webmvc:4.2.4.RELEASE" />
+          <element id="library" level="project" name="Gradle: org.springframework:spring-tx:4.2.4.RELEASE" />
+          <element id="library" level="project" name="Gradle: org.springframework:spring-jdbc:4.2.4.RELEASE" />
+          <element id="library" level="project" name="Gradle: org.springframework:spring-test:4.2.4.RELEASE" />
+          <element id="library" level="project" name="Gradle: mysql:mysql-connector-java:5.1.38" />
+          <element id="library" level="project" name="Gradle: org.mybatis.generator:mybatis-generator-core:1.3.2" />
+          <element id="library" level="project" name="Gradle: org.mybatis:mybatis-spring:1.2.3" />
+          <element id="library" level="project" name="Gradle: org.mybatis:mybatis:3.3.0" />
+          <element id="library" level="project" name="Gradle: junit:junit:4.12" />
+          <element id="library" level="project" name="Gradle: com.mchange:c3p0:0.9.5.2" />
+          <element id="library" level="project" name="Gradle: javax.servlet:javax.servlet-api:4.0.0" />
+          <element id="library" level="project" name="Gradle: com.github.pagehelper:pagehelper:5.1.2-beta" />
+          <element id="library" level="project" name="Gradle: com.alibaba:fastjson:1.2.37" />
+          <element id="library" level="project" name="Gradle: aopalliance:aopalliance:1.0" />
+          <element id="library" level="project" name="Gradle: org.springframework:spring-core:4.2.4.RELEASE" />
+          <element id="library" level="project" name="Gradle: org.springframework:spring-expression:4.2.4.RELEASE" />
+          <element id="library" level="project" name="Gradle: org.hamcrest:hamcrest-core:1.3" />
+          <element id="library" level="project" name="Gradle: com.mchange:mchange-commons-java:0.2.11" />
+          <element id="library" level="project" name="Gradle: com.github.jsqlparser:jsqlparser:1.0" />
+          <element id="library" level="project" name="Gradle: commons-logging:commons-logging:1.2" />
+          <element id="file-copy" path="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.sun.mail/javax.mail/1.6.0/a055c648842c4954c1f7db7254f45d9ad565e278/javax.mail-1.6.0.jar" />
+          <element id="file-copy" path="$USER_HOME$/.gradle/caches/modules-2/files-2.1/javax.activation/activation/1.1/e6cb541461c2834bdea3eb920f1884d1eb508b50/activation-1.1.jar" />
+        </element>
+      </element>
+    </root>
+  </artifact>
+</component>

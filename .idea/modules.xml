@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/SSMP.iml" filepath="$PROJECT_DIR$/.idea/modules/SSMP.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/SSMP_main.iml" filepath="$PROJECT_DIR$/.idea/modules/SSMP_main.iml" group="SSMP" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/SSMP_test.iml" filepath="$PROJECT_DIR$/.idea/modules/SSMP_test.iml" group="SSMP" />
+    </modules>
+  </component>
+</project>
