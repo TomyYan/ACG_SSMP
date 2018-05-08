@@ -21,7 +21,7 @@ public interface UserMapper {
                  @Param("userName") String userName,
                  @Param("email") String email);
 
-    @Select("select * from user_table where userId=#{userId}")
+    @Select("select * from user_table left join admin on user_table.account=admin.adminAccount where userId=#{userId}")
     User getUserInfo(@Param("userId")int userId);
 
     @Update("update user_table set userName=#{userName},email=#{email},accountSign=#{accountSign},accountSex=#{accountSex},accountImg=#{accountImg} where userId=#{userId}")

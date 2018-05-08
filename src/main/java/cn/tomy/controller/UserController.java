@@ -168,12 +168,19 @@ public class UserController {
         int userId = Integer.parseInt(requestMsg.getString("userId"));
         String oldPassword=requestMsg.getString("oldPassword");
         String newPassword=requestMsg.getString("newPassword");
+        int i=-1;
         try{
-            userService.updatePassword(userId,oldPassword,newPassword);
+            i=userService.updatePassword(userId,oldPassword,newPassword);
+            System.out.println("结果"+i);
         }catch (Exception e){
             return new JsonResponse<String>("404",e.toString(),"fail");
         }
-        return new JsonResponse<String>("1","success","ok");
+        if(i==1){
+            return new JsonResponse<String>("1","success","ok");
+        }else{
+            return new JsonResponse<String>("404","fail","oldPasswordFail");
+        }
+
     }
 
     @RequestMapping(value="/forgetPassword", produces = "application/json;charset=UTF-8", method = RequestMethod.POST)

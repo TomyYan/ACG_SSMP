@@ -7,6 +7,7 @@ import java.io.Serializable;
  */
 public class User implements Serializable{
     private int userId;
+    private int isAdmin=0;
     private String account;
     private String password;
     private String email;
@@ -47,6 +48,14 @@ public class User implements Serializable{
         this.accountImg = accountImg;
     }
 
+
+    public int getIsAdmin() {
+        return isAdmin;
+    }
+
+    public void setIsAdmin(int isAdmin) {
+        this.isAdmin = isAdmin;
+    }
 
 
     public String getPassword() {
