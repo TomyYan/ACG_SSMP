@@ -4,13 +4,13 @@ package cn.tomy.domain;
  * Created by tomy on 18-4-14.
  */
 public class ArticleResponse {
-    private int userId;
-    private String userName;
-    private int articleId;
-    private String article;
-    private int thumbsUpNum;
-    private int thumbsDownNum;
-    private String articleImgAddress;
+    private int userId=0;
+    private String userName="";
+    private int articleId=0;
+    private String article="";
+    private int thumbsUpNum=0;
+    private int thumbsDownNum=0;
+    private String articleImgAddress="";
 
     public int getUserId() {
         return userId;

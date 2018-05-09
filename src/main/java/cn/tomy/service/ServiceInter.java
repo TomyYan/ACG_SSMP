@@ -39,6 +39,8 @@ public interface ServiceInter {
     List<ArticleResponse> getArticle(int type,int start);
     //获取个人文章
     List<ArticleResponse> getUserArticle(int userId,int start);
+    //获取个人评论文章
+    List<ArticleResponse> getCommentArticle(int userId,int start);
     //获取评论
     List<CommentResponse> getComment(int articleId);
     //删除文章

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="Encoding">
+    <file url="file://$PROJECT_DIR$/src/main/java/cn/tomy/config/Constant.java" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/src/main/java/cn/tomy/domain/CheckResult.java" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/src/main/java/cn/tomy/domain/CommonResult.java" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/src/main/java/cn/tomy/domain/SubjectModel.java" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/src/main/java/cn/tomy/tool/ResponseMgr.java" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/src/main/java/cn/tomy/tool/TokenMgr.java" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/src/main/java/cn/tomy/utils/GsonUtil.java" charset="GBK" />
+  </component>
+</project>

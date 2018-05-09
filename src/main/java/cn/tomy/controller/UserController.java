@@ -1,9 +1,14 @@
 package cn.tomy.controller;
 
+import cn.tomy.config.Constant;
 import cn.tomy.domain.*;
 import cn.tomy.service.ServiceInter;
 import cn.tomy.service.impl.UserService;
+import cn.tomy.tool.ResponseMgr;
+import cn.tomy.tool.TokenMgr;
+import cn.tomy.utils.GsonUtil;
 import com.alibaba.fastjson.JSONObject;
+import io.jsonwebtoken.Claims;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
@@ -13,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
+import java.io.PrintWriter;
 import java.io.UnsupportedEncodingException;
 import java.util.List;
 
@@ -404,5 +410,81 @@ public class UserController {
         JSONObject requestMsg = JSONObject.parseObject(requestMsgStr);
         int articleId=Integer.parseInt(requestMsg.getString("articleId"));
         return new JsonResponse<List<CommentResponse>>("1","success",userService.getComment(articleId));
+    }
+
+    @RequestMapping(value="/AutoLogin", produces = "application/json;charset=UTF-8", method = RequestMethod.POST)
+    @ResponseBody
+    public Object AutoLogin(HttpServletRequest request) {
+        String requestMsgStr = request.getHeader("requestMsg");
+        try {
+            requestMsgStr = new String(requestMsgStr.getBytes("iso8859-1"), "UTF-8");
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+        }
+        System.out.println(requestMsgStr);
+        JSONObject requestMsg = JSONObject.parseObject(requestMsgStr);
+        String token=requestMsg.getString("token");
+        if (token == null || token.equals("")) {
+            return ResponseMgr.noLogin();
+        }
+
+        // 验证JWT的签名，返回CheckResult对象
+        CheckResult checkResult = TokenMgr.validateJWT(token);
+        if (checkResult.isSuccess()) {
+            Claims claims = checkResult.getClaims();
+            SubjectModel model = GsonUtil.jsonStrToObject(claims.getSubject(), SubjectModel.class);
+            return new JsonResponse<SubjectModel>("1001","ok",model);
+        } else {
+            switch (checkResult.getErrCode()) {
+                // 签名过期，返回过期提示码
+                case Constant.JWT_ERRCODE_EXPIRE:
+                    return ResponseMgr.loginExpire();
+                // 签名验证不通过
+                case Constant.JWT_ERRCODE_FAIL:
+                    return ResponseMgr.noAuth();
+                default:
+                    break;
+            }
+        }
+        return new JsonResponse<String>("1002","fail","fail");
+    }
+
+    @RequestMapping(value="/getToken", produces = "application/json;charset=UTF-8", method = RequestMethod.POST)
+    @ResponseBody
+    public Object getToken(HttpServletRequest request) {
+        String requestMsgStr = request.getHeader("requestMsg");
+        try {
+            requestMsgStr = new String(requestMsgStr.getBytes("iso8859-1"), "UTF-8");
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+        }
+        System.out.println(requestMsgStr);
+        JSONObject requestMsg = JSONObject.parseObject(requestMsgStr);
+        int userId=Integer.parseInt(requestMsg.getString("userId"));
+        String userAccount=requestMsg.getString("userAccount");
+        String jwt="fail";
+        try {
+            SubjectModel sub = new SubjectModel(userId, userAccount);
+            jwt = TokenMgr.createJWT(Constant.JWT_ID, TokenMgr.generalSubject(sub), Constant.JWT_TTL);
+        }catch (Exception e){
+            return new JsonResponse<String>("404","fail",jwt);
+        }
+        return new JsonResponse<String>("1","success",jwt);
+    }
+
+    @RequestMapping(value="/getCommentArticle", produces = "application/json;charset=UTF-8", method = RequestMethod.POST)
+    @ResponseBody
+    public Object getCommentArticle(HttpServletRequest request){
+        String requestMsgStr=request.getHeader("requestMsg");
+        try {
+            requestMsgStr=new String(requestMsgStr.getBytes("iso8859-1"),"UTF-8");
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+        }
+        System.out.println(requestMsgStr);
+        JSONObject requestMsg=JSONObject.parseObject(requestMsgStr);
+        int userId=Integer.parseInt(requestMsg.getString("userId"));
+        int start=Integer.parseInt(requestMsg.getString("start"));
+        return new JsonResponse("1", "success", userService.getCommentArticle(userId, start));
     }
 }

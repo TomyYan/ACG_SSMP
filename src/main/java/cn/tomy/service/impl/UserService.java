@@ -159,6 +159,11 @@ public class UserService implements ServiceInter{
     }
 
     @Override
+    public List<ArticleResponse> getCommentArticle(int userId, int start) {
+        return userMapper.getCommentArticle(userId,start);
+    }
+
+    @Override
     public List<CommentResponse> getComment(int articleId) {
         return userMapper.getComment(articleId);
     }

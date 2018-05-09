@@ -121,6 +121,10 @@ public interface UserMapper {
     List<ArticleResponse> getUserArticle(@Param("userId") int userId,
                                      @Param("start") int start);
 
+    @Select("select DISTINCT Article.articleId,article,thumbsUpNum,thumbsDownNum,userId,userName from Article left join (select articleAndComment.articleId,thumbsUpNum,thumbsDownNum,articleAndComment.commentId,userId,account,password,accountSex,accountSign,email,accountImg,userName from articleAndComment left join thumbsUpOrDown on  articleAndComment.articleId=thumbsUpOrDown.articleId left join (select user_table.userId,account,password,accountSex,accountSign,email,accountImg,userName,commentId from userComment left join user_table on userComment.userId=user_table.userId) as user_comment_table on articleAndComment.commentId=user_comment_table.commentId) as user_article_comment on Article.articleId=user_article_comment.articleId where userId=#{userId} order by Article.articleId desc limit #{start},10")
+    List<ArticleResponse> getCommentArticle(@Param("userId") int userId,
+                                         @Param("start") int start);
+
     @Select("select * from user_table left join (select userId,articleComment,articleId from articleAndComment left join articleComment on articleAndComment.commentId=articleComment.commentId left join userComment on articleAndComment.commentId=userComment.commentId) as CommentResponse on CommentResponse.userId=user_table.userId where articleId=#{articleId}")
     List<CommentResponse> getComment(@Param("articleId") int articleId);
 
