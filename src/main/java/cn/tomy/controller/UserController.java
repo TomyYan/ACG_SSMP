@@ -9,6 +9,10 @@ import cn.tomy.tool.TokenMgr;
 import cn.tomy.utils.GsonUtil;
 import com.alibaba.fastjson.JSONObject;
 import io.jsonwebtoken.Claims;
+import org.apache.commons.fileupload.FileItem;
+import org.apache.commons.fileupload.FileUploadBase;
+import org.apache.commons.fileupload.disk.DiskFileItemFactory;
+import org.apache.commons.fileupload.servlet.ServletFileUpload;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
@@ -16,10 +20,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 
+import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
-import java.io.PrintWriter;
-import java.io.UnsupportedEncodingException;
+import javax.servlet.http.HttpServletResponse;
+import java.io.*;
 import java.util.List;
 
 /**
@@ -486,5 +492,106 @@ public class UserController {
         int userId=Integer.parseInt(requestMsg.getString("userId"));
         int start=Integer.parseInt(requestMsg.getString("start"));
         return new JsonResponse("1", "success", userService.getCommentArticle(userId, start));
+    }
+
+    @RequestMapping(value="/uploadPhoto", produces = "multipart/form-data;charset=UTF-8", method = RequestMethod.POST)
+    @ResponseBody
+    public Object uploadPhoto(HttpServletRequest request,
+                              @RequestParam(value = "description",required = false) String description,
+                              @RequestParam("file") MultipartFile file)throws Exception{
+        System.out.println("获取数据为:"+request.getServletContext().getRealPath("/images/"));
+        System.out.println(description);
+        if(!file.isEmpty()){
+            String path=request.getServletContext().getRealPath("/images/");
+            String fileName=file.getOriginalFilename();
+            File filePath=new File(path,fileName);
+            if(!filePath.getParentFile().exists()){
+                filePath.getParentFile().mkdirs();
+            }
+            try {
+                file.transferTo((new File(path+File.separator+fileName)));
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            return "success";
+        }else{
+            return "error";
+        }
+
+    }
+
+    @RequestMapping(value="/upload", produces = "multipart/form-data;charset=UTF-8", method = RequestMethod.POST)
+    @ResponseBody
+    public void doGet(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        try {
+            System.out.println("IP:" + request.getRemoteAddr());
+            // 1、创建工厂类：DiskFileItemFactory
+            DiskFileItemFactory facotry = new DiskFileItemFactory();
+            String tempDir = request.getServletContext().getRealPath("/images/");
+            System.out.println("address"+tempDir);
+            facotry.setRepository(new File(tempDir));//设置临时文件存放目录
+            // 2、创建核心解析类：ServletFileUpload
+            ServletFileUpload upload = new ServletFileUpload(facotry);
+            upload.setHeaderEncoding("UTF-8");// 解决上传的文件名乱码
+            upload.setFileSizeMax(1024 * 1024 * 1024);// 单个文件上传最大值是1M
+            upload.setSizeMax(2048 * 1024 * 1024);//文件上传的总大小限制
+
+            // 3、判断用户的表单提交方式是不是multipart/form-data
+            boolean bb = upload.isMultipartContent(request);
+            if (!bb) {
+                return;
+            }
+            // 4、是：解析request对象的正文内容List<FileItem>
+            List<FileItem> items = upload.parseRequest(request);
+            String storePath = request.getServletContext().getRealPath("/images/");
+            for (FileItem item : items) {
+                if (item.isFormField()) {
+                    // 5、判断是否是普通表单：打印看看
+                    String fieldName = item.getFieldName();// 请求参数名
+                    String fieldValue = item.getString("UTF-8");// 请求参数值
+                    System.out.println(fieldName + "=" + fieldValue);
+                } else {
+                    // 6、上传表单：得到输入流，处理上传：保存到服务器的某个目录中，保存时的文件名是啥？
+                    String fileName = item.getName();// 得到上传文件的名称 C:\Documents
+                    // and
+                    // Settings\shc\桌面\a.txt
+                    // a.txt
+                    //解决用户没有选择文件上传的情况
+                    if(fileName==null||fileName.trim().equals("")){
+                        continue;
+                    }
+                    fileName = fileName
+                            .substring(fileName.lastIndexOf("\\") + 1);
+                    String newFileName =  fileName;
+                    System.out.println("上传的文件名是：" + fileName);
+                    InputStream in = item.getInputStream();
+                    String savePath = new UploadServlet().makeDir(storePath, fileName) + "_"
+                            + newFileName;
+                    OutputStream out = new FileOutputStream(savePath);
+                    byte b[] = new byte[1024];
+                    int len = -1;
+                    while ((len = in.read(b)) != -1) {
+                        out.write(b, 0, len);
+                    }
+                    in.close();
+                    out.close();
+                    item.delete();//删除临时文件
+                }
+            }
+        }catch(FileUploadBase.FileSizeLimitExceededException e){
+            request.setAttribute("message", "单个文件大小不能超出5M");
+            request.getRequestDispatcher("/message.jsp").forward(request,
+                    response);
+        }catch(FileUploadBase.SizeLimitExceededException e){
+            request.setAttribute("message", "总文件大小不能超出7M");
+            request.getRequestDispatcher("/message.jsp").forward(request,
+                    response);
+        }catch (Exception e) {
+            e.printStackTrace();
+            request.setAttribute("message", "上传失败");
+            request.getRequestDispatcher("/message.jsp").forward(request,
+                    response);
+        }
     }
 }

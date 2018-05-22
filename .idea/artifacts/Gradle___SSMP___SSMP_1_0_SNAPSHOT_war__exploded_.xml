@@ -38,6 +38,8 @@
           <element id="library" level="project" name="Gradle: com.alibaba:fastjson:1.2.37" />
           <element id="library" level="project" name="Gradle: com.sun.mail:javax.mail:1.6.0" />
           <element id="library" level="project" name="Gradle: com.google.code.gson:gson:2.8.4" />
+          <element id="library" level="project" name="Gradle: io.jsonwebtoken:jjwt:0.9.0" />
+          <element id="library" level="project" name="Gradle: commons-io:commons-io:1.4" />
           <element id="library" level="project" name="Gradle: aopalliance:aopalliance:1.0" />
           <element id="library" level="project" name="Gradle: org.springframework:spring-core:4.2.4.RELEASE" />
           <element id="library" level="project" name="Gradle: org.springframework:spring-expression:4.2.4.RELEASE" />
@@ -45,11 +47,11 @@
           <element id="library" level="project" name="Gradle: com.mchange:mchange-commons-java:0.2.11" />
           <element id="library" level="project" name="Gradle: com.github.jsqlparser:jsqlparser:1.0" />
           <element id="library" level="project" name="Gradle: javax.activation:activation:1.1" />
+          <element id="library" level="project" name="Gradle: com.fasterxml.jackson.core:jackson-databind:2.8.9" />
           <element id="library" level="project" name="Gradle: commons-logging:commons-logging:1.2" />
-          <element id="file-copy" path="$USER_HOME$/.gradle/caches/modules-2/files-2.1/io.jsonwebtoken/jjwt/0.9.0/64e3ed8a5f0bc93ecea592a0b3280f995efbdfe9/jjwt-0.9.0.jar" />
-          <element id="file-copy" path="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.fasterxml.jackson.core/jackson-databind/2.8.9/4dfca3975be3c1a98eacb829e70f02e9a71bc159/jackson-databind-2.8.9.jar" />
-          <element id="file-copy" path="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.fasterxml.jackson.core/jackson-annotations/2.8.0/45b426f7796b741035581a176744d91090e2e6fb/jackson-annotations-2.8.0.jar" />
-          <element id="file-copy" path="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.fasterxml.jackson.core/jackson-core/2.8.9/569b1752705da98f49aabe2911cc956ff7d8ed9d/jackson-core-2.8.9.jar" />
+          <element id="library" level="project" name="Gradle: com.fasterxml.jackson.core:jackson-annotations:2.8.0" />
+          <element id="library" level="project" name="Gradle: com.fasterxml.jackson.core:jackson-core:2.8.9" />
+          <element id="file-copy" path="$USER_HOME$/.gradle/caches/modules-2/files-2.1/commons-fileupload/commons-fileupload/1.2.1/384faa82e193d4e4b0546059ca09572654bc3970/commons-fileupload-1.2.1.jar" />
         </element>
       </element>
     </root>
