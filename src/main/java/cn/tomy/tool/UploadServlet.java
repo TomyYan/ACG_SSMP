@@ -1,4 +1,4 @@
-package cn.tomy.controller;
+package cn.tomy.tool;
 
 import org.apache.commons.fileupload.FileItem;
 import org.apache.commons.fileupload.FileUploadBase;
@@ -20,6 +20,8 @@ import java.util.List;
  */
 public class UploadServlet extends HttpServlet {
 
+
+    // WEB-INF/upload/1/3 打散存储目录
     public String makeDir(String storePath, String fileName) {
         int hashCode = fileName.hashCode();// 得到文件名的hashcode码
         int dir1 = hashCode & 0xf;// 取hashCode的低4位 0~15
